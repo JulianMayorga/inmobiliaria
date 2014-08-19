@@ -425,12 +425,13 @@ module.exports = function (grunt) {
     protractor: {
       options: {
         configFile: "protractor.conf.js",
-        keepAlive: false, // If false, the grunt process stops when the test fails.
+        keepAlive: true, // If false, the grunt process stops when the test fails.
         noColor: false, // If true, protractor will not use colors in its output.
         args: {
           // Arguments passed to the command
         }
-      }
+      },
+      run: {}
     },
     'gh-pages': {
       options: {
@@ -488,6 +489,15 @@ module.exports = function (grunt) {
         ],
         dest: 'manifest.appcache'
       }
+    },
+
+    'http-server': {
+        'dev': {
+            root: 'app',
+            port: 3333,
+            host: "127.0.0.1",
+            runInBackground: true
+        }
     }
 
   });
@@ -512,6 +522,7 @@ module.exports = function (grunt) {
   ]);
 
   grunt.registerTask('test-e2e', [
+    'http-server:dev',
     'protractor'
   ]);
 

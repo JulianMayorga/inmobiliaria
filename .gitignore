@@ -7,3 +7,4 @@ test/coverage
 .grunt/
 /app/config/local.js
 .divshot-cache/
+phantomjsdriver.log
